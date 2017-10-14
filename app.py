@@ -218,7 +218,7 @@ def showCategory(category_name):
     categories = session.query(Category).order_by(asc(Category.name))
     category = session.query(Category).filter_by(name=category_name).one()
     items = session.query(Items).filter_by(category=category).order_by(asc(Items.name)).all()
-    print items
+    print (items)
     count = session.query(Items).filter_by(category=category).count()
     creator = getUserInfo(category.user_id)
     if 'username' not in login_session or creator.id != login_session['user_id']:
@@ -263,7 +263,7 @@ def addCategory():
         newCategory = Category(
             name=request.form['name'],
             user_id=login_session['user_id'])
-        print newCategory
+        print (newCategory)
         session.add(newCategory)
         session.commit()
         flash('Category Successfully Added!')
@@ -457,4 +457,4 @@ def dated_url_for(endpoint, **values):
 if __name__ == '__main__':
     app.secret_key = 'DEV_SECRET_KEY'
     app.debug = True
-    app.run(host = '0.0.0.0', port = 5000)
+    app.run(host = '0.0.0.0', port =5000 )
